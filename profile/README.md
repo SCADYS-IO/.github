@@ -27,10 +27,10 @@ All firmware is developed with the ESP-IDF framework and organized around reusab
 
 ## What You'll Find Here
 
-- **Firmware repositories** – Open-source embedded software for SCADYS.io products, built on ESP-IDF
-- **Reusable components** – Modular ESP-IDF components for marine electronics development (CAN-bus, NMEA, sensor drivers, etc.)
-- **Technical documentation** – Product architecture, integration guides, compliance information, and API references
-- **Examples & tools** – Sample applications, firmware build templates, and development utilities
+- **Firmware repositories** _(coming soon)_ – Open-source embedded software for SCADYS.io products, built on ESP-IDF
+- **Reusable components** _(coming soon)_ – Modular ESP-IDF components for marine electronics development (CAN-bus, NMEA, sensor drivers, etc.)
+- **Technical documentation** – Product architecture, integration guides, compliance information, and API references (see [docs.scadys.io](https://docs.scadys.io))
+- **Examples & tools** _(coming soon)_ – Sample applications, firmware build templates, and development utilities
 - **Governance assets** – Organization policies and standards
 
 ## Design Philosophy
