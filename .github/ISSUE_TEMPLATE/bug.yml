@@ -1,0 +1,76 @@
+name: Bug report
+description: A bug in firmware, hardware, docs, tooling, or orchestration
+title: "[Bug] "
+labels: ["kind:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for bugs in code, hardware misbehaviour, doc errors, tooling issues, or orchestration scaffolding issues.
+
+        Bugs typically stay in the affected repo's Issues until resolved.
+  - type: dropdown
+    id: product
+    attributes:
+      label: Affected product / repo
+      options:
+        - mdd400
+        - wti400
+        - canbench-duo
+        - canbench-truez
+        - docs.scadys.io
+        - governance.scadys.io
+        - agentic-os
+        - libraries.scadys.io
+        - esp-idf-nmea2000
+        - esp-idf-opt3004
+        - esp-idf-tmp112
+        - esp-idf-imu
+        - .github
+        - other
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - hardware
+        - firmware
+        - housing
+        - compliance
+        - launch
+        - governance
+        - docs
+        - orchestration
+    validations:
+      required: true
+  - type: textarea
+    id: symptoms
+    attributes:
+      label: Symptoms / observed behaviour
+      description: What's happening that shouldn't be
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should happen instead
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Minimum steps to reproduce
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Hardware version, firmware version, browser, OS, Claude Code/Cowork session type, etc.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Logs, photos, scope captures, screenshots, error messages

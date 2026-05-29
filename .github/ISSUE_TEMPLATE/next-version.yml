@@ -1,0 +1,83 @@
+name: Next-version backlog item
+description: A design refinement, layout fix, compliance prep, or supplier qualification scoped to a future hardware version
+title: "[Next-version] "
+labels: ["kind:next-version"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for V_next design refinements, layout fixes, compliance prep, supplier qualification, and component-value re-fits.
+
+        These items are typically **public** on docs.scadys.io tasks.json (`kind: next-version`). After filing, add to the SCADYS Backlog project for `target_version`, `priority`, `status`.
+
+        **Feature-drift trigger** (per `agentic-os/context/ceo/ceo.md`): if this item reveals a feature not yet publicly announced, mark it private and DO NOT publish to docs.scadys.io until announced. Design-review / component-value tasks remain public regardless.
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      options:
+        - mdd400
+        - wti400
+        - canbench-duo
+        - canbench-truez
+        - other
+    validations:
+      required: true
+  - type: input
+    id: circuit
+    attributes:
+      label: Circuit
+      description: kebab-case circuit slug
+      placeholder: e.g. can-bus-power
+    validations:
+      required: true
+  - type: input
+    id: circuit_label
+    attributes:
+      label: Circuit label
+      description: Human-readable circuit name
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Design change rationale + concrete delta (component value, layout move, supplier swap, etc.)
+      placeholder: |
+        Move C18 / C19 adjacent to U5 pin 3 to reduce VCC bypass trace from ~2.5 mm to ≤ 0.5 mm, per SN65HVD234 datasheet.
+    validations:
+      required: true
+  - type: input
+    id: target_version
+    attributes:
+      label: Target version
+      description: Hardware version targeted (e.g. v2.10, v1.3, V1.3)
+      placeholder: e.g. v2.10
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - hardware
+        - firmware
+        - housing
+        - compliance
+        - launch
+        - governance
+        - docs
+        - orchestration
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Issue IDs or task IDs this depends on (free text; one per line)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to design-intent, schema-review, pcb-review, or performance-review files that motivate this change

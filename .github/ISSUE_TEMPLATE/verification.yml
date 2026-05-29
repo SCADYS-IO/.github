@@ -1,0 +1,78 @@
+name: Hardware verification
+description: A bench test, measurement, or sub-circuit verification matching the schema of docs.scadys.io tasks.json
+title: "[Verification] "
+labels: ["kind:verification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for hardware bench tests, measurements, and verification procedures matching the schema used in `docs.scadys.io/<product>/tasks.json`.
+
+        These items are typically **public** on docs.scadys.io. After filing, add to the SCADYS Backlog project to set additional custom fields (target_version, priority, status).
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      options:
+        - mdd400
+        - wti400
+        - canbench-duo
+        - canbench-truez
+        - other
+    validations:
+      required: true
+  - type: input
+    id: circuit
+    attributes:
+      label: Circuit
+      description: kebab-case circuit slug (e.g. `power-supplies`, `can-transceiver`, `i2c-sensors`)
+      placeholder: e.g. power-supplies
+    validations:
+      required: true
+  - type: input
+    id: circuit_label
+    attributes:
+      label: Circuit label
+      description: Human-readable circuit name (matches the docs.scadys.io page heading)
+      placeholder: e.g. Power Supplies
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What to do, expected pass criteria, instrumentation
+      placeholder: |
+        Apply 12 V to NET-S; pass if VS+ ≈ 11.25 V (within the ~750 mV drop budget).
+    validations:
+      required: true
+  - type: input
+    id: target_version
+    attributes:
+      label: Target version
+      description: Hardware version targeted (e.g. v2.9, v2.10, v1.2, v1.3, V1.1, V1.2)
+      placeholder: e.g. v2.9
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - hardware
+        - firmware
+        - housing
+        - compliance
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Issue IDs or task IDs this depends on (free text; one per line)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to evidence files, photos, scope captures, design-intent docs
