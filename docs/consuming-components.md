@@ -13,6 +13,19 @@ These are the shared standards every SCADYS-IO component points to; the canonica
 copy lives in the [`SCADYS-IO/.github`](https://github.com/SCADYS-IO/.github)
 organization profile repository.
 
+## Support tiers
+
+- **ESP-IDF — primary, verified.** The components are developed and tested
+  against ESP-IDF; this is the only target verified on hardware and the one
+  releases gate on.
+- **PlatformIO & Arduino — community best-effort.** Espressif no longer
+  maintains the PlatformIO integration (the official `espressif32` platform and
+  the Arduino-as-an-IDF-component layer), so these are supported on a best-effort
+  basis and may lag. The `framework = espidf` route still works; the Arduino /
+  Arduino-framework route relies on the community
+  [`pioarduino`](https://github.com/pioarduino/platform-espressif32) platform (or
+  `arduino-cli` with arduino-esp32 v3+).
+
 ---
 
 ## ESP-IDF (native)
