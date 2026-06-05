@@ -66,6 +66,21 @@ dependencies:
 
 Use a platform version that provides **ESP-IDF >= 5.4**.
 
+> **Windows — no spaces in any path.** ESP-IDF's build system refuses paths that
+> contain a space (`Error: Detected a whitespace character in project paths`).
+> This bites two places on Windows: the **project location** and PlatformIO's
+> **package cache**, which defaults to `%USERPROFILE%\.platformio` — so a
+> username with a space (`C:\Users\Jane Smith\`) breaks the build even when the
+> project path is clean. Relocate the cache to a space-free path before building:
+>
+> ```powershell
+> $env:PLATFORMIO_CORE_DIR = "D:\pio"   # any space-free path
+> pio run
+> ```
+>
+> The same whitespace rule applies to a native ESP-IDF install: keep ESP-IDF and
+> your projects on space-free paths (e.g. `D:\esp`, not `C:\Users\Jane Smith\`).
+
 ## Arduino (arduino-esp32 v3.0+)
 
 The components are ESP-IDF-first. They are usable under Arduino **only** on the
