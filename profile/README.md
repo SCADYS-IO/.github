@@ -31,7 +31,7 @@ All firmware is developed with the ESP-IDF framework and organized around reusab
 - **Reusable components** _(coming soon)_ – Modular ESP-IDF components for marine electronics development (CAN-bus, NMEA, sensor drivers, etc.)
 - **Technical documentation** – Product architecture, integration guides, compliance information, and API references (see [docs.scadys.io](https://docs.scadys.io))
 - **Examples & tools** _(coming soon)_ – Sample applications, firmware build templates, and development utilities
-- **Developer guidelines** – How to consume our components across ESP-IDF, PlatformIO, and Arduino, and how to use a C component from a C++ app: [Consuming components](../docs/consuming-components.md)
+- **Developer guidelines** – The design principles every component follows: [Component architecture & design principles](../docs/component-architecture.md); and how to consume our components across ESP-IDF, PlatformIO, and Arduino, including using a C component from a C++ app: [Consuming components](../docs/consuming-components.md)
 - **Governance assets** – Organization policies and standards
 
 ## Design Philosophy
