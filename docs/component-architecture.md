@@ -19,7 +19,9 @@ TMP102 and TMP112, or the A and B accuracy grades of a part). The driver exposes
 the *full* feature surface — every operating mode, configuration field, and
 status flag the device offers — rather than a convenient subset. A driver that
 hides features forces the next user to fork it; exposing everything costs little
-and keeps the component reusable across products.
+and keeps the component reusable across products. For a large multi-capability
+device, that full surface may be reached in stages — see
+[Staged growth by composition](#staged-growth-by-composition).
 
 ## Configuration as a struct
 
@@ -63,6 +65,28 @@ depends only on `<stdint.h>` / `<stdbool.h>`, with no ESP-IDF or hardware calls.
 That core compiles and runs on a host, so its maths is covered by unit tests that
 need no device, and continuous integration runs those tests plus an on-target
 build on every change. The hardware layer above it does only I²C/SPI/UART I/O.
+
+## Staged growth by composition
+
+A large, multi-capability device — an IMU with an accelerometer, a gyroscope, a
+FIFO, interrupt routing, and embedded functions, say — reaches full coverage in
+**stages** rather than in one release. The first stage is deliberately **lean**:
+a lightweight component exposing the minimum API the consuming product actually
+needs — or can plausibly be expected to need — and nothing more. Stage 1 is
+scoped from the product requirement, not from the device's feature list;
+capability the product has no use for stays off the API until a later stage has
+a real need to pull it in. Each later stage adds capability by **composition**:
+new functions over the same handle, and where a capability is substantial, its
+own source/header pair (`<component>_fifo.c`, `<component>_events.c`, …) that
+shares the component's private register helpers. A later stage only *adds*
+symbols — it never changes the earlier API — and CalVer marks the progression.
+These are C components, so this is composition, not inheritance: there is no
+base type, only a shared handle and shared register access. Single-capability
+parts (a temperature or light sensor) have nothing to stage — their one
+capability is the whole device, delivered complete in the first release. The end
+state is the same full coverage either way; staging is how a large part gets
+there without a breaking rewrite, and the lean first stage is what keeps a small
+product build from carrying a large part's whole surface.
 
 ---
 
