@@ -12,15 +12,16 @@ For the language and consumption contract (C with `extern "C"` headers, taking
 ESP-IDF handles directly, and using a C component from C++), see
 [Consuming components](consuming-components.md).
 
-## Full device coverage
+## Full device coverage, grown by need
 
 One driver covers a device and its register-identical siblings (for example
-TMP102 and TMP112, or the A and B accuracy grades of a part). The driver exposes
-the *full* feature surface — every operating mode, configuration field, and
-status flag the device offers — rather than a convenient subset. A driver that
-hides features forces the next user to fork it; exposing everything costs little
-and keeps the component reusable across products. For a large multi-capability
-device, that full surface may be reached in stages — see
+TMP102 and TMP112, or the A and B accuracy grades of a part). The *end state*
+is the full feature surface — every operating mode, configuration field, and
+status flag the device offers — because a driver that permanently hides features
+forces the next user to fork it. The *first release*, however, is deliberately
+lean: it exposes the minimum API the consuming product needs, or can plausibly
+be expected to need, and coverage then grows toward the full surface in additive
+stages as real needs pull capability in — see
 [Staged growth by composition](#staged-growth-by-composition).
 
 ## Configuration as a struct
@@ -81,12 +82,13 @@ own source/header pair (`<component>_fifo.c`, `<component>_events.c`, …) that
 shares the component's private register helpers. A later stage only *adds*
 symbols — it never changes the earlier API — and CalVer marks the progression.
 These are C components, so this is composition, not inheritance: there is no
-base type, only a shared handle and shared register access. Single-capability
-parts (a temperature or light sensor) have nothing to stage — their one
-capability is the whole device, delivered complete in the first release. The end
-state is the same full coverage either way; staging is how a large part gets
-there without a breaking rewrite, and the lean first stage is what keeps a small
-product build from carrying a large part's whole surface.
+base type, only a shared handle and shared register access. The lean first stage
+applies to every part, large or small: a part whose product need genuinely spans
+the whole device reaches full coverage in its first release by that scoping — as
+the outcome of asking what the product needs, never as a default. The end state
+is the same full coverage either way; staging is how a part gets there without a
+breaking rewrite, and the lean first stage is what keeps a product build from
+carrying surface it does not use.
 
 ---
 
