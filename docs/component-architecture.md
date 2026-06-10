@@ -97,8 +97,11 @@ carrying surface it does not use.
 A component's own README does not repeat the principles above. It documents the
 part-specific detail:
 
-- **What it covers** — the exact device(s), the feature surface, and any
-  register-compatible siblings the one driver handles.
+- **What it covers** — the exact device(s), the feature surface of the current
+  stage, and any register-compatible siblings the one driver handles.
+- **Why this scope** — the product need the current stage was scoped from and
+  how each consuming product uses the part; what is staged out, and the kind of
+  need that would pull each piece in.
 - **The maths** — the device's LSB/scale values, register layout, and the decode
   and encode formulas, pointing to the host-tested `<component>_convert` core.
 
